@@ -1,0 +1,91 @@
+﻿@model PROG_POE_2.Models.Product
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="header">Product Details</h1>
+
+<div class="card shadow-sm mb-4">
+    <div class="card-body">
+        <h4 class="card-title">Product</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-3 font-weight-bold">
+                @Html.DisplayNameFor(model => model.FarmerID)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.FarmerID)
+            </dd>
+            <dt class="col-sm-3 font-weight-bold">
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+            <dt class="col-sm-3 font-weight-bold">
+                @Html.DisplayNameFor(model => model.Type)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Type)
+            </dd>
+            <dt class="col-sm-3 font-weight-bold">
+                @Html.DisplayNameFor(model => model.description)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.description)
+            </dd>
+            <dt class="col-sm-3 font-weight-bold">
+                @Html.DisplayNameFor(model => model.ProductionDate)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.ProductionDate)
+            </dd>
+        </dl>
+    </div>
+</div>
+
+<div class="text-center">
+    <a asp-action="Edit" asp-route-id="@Model?.ProductID" class="btn btn-primary shadow-btn">Edit</a>
+    <a asp-action="Display" class="btn btn-secondary shadow-btn ml-2">Back to List</a>
+</div>
+
+@section Styles {
+    <style>
+        .header {
+            margin-bottom: 30px;
+            text-align: center;
+            color: #343a40;
+        }
+
+        .card {
+            border-radius: 15px;
+        }
+
+        .card-title {
+            color: #343a40;
+        }
+
+        .shadow-btn {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s;
+        }
+
+        .shadow-btn:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .font-weight-bold {
+            font-weight: 700 !important;
+        }
+
+        .text-center {
+            text-align: center !important;
+        }
+
+        .ml-2 {
+            margin-left: 0.5rem !important;
+        }
+    </style>
+}

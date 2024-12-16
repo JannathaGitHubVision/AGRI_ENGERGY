@@ -1,0 +1,202 @@
+﻿@model PROG_POE_2.Models.Product
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="header">Create Product</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <div class="form-3d">
+            <form asp-action="Create" method="post" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+                <div class="form-group">
+                    <label for="ImageUpload" class="control-label font-weight-bold">Product Image</label>
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input shadow-input" id="ImageUpload" name="ImageUpload">
+                        <label class="custom-file-label shadow-input" for="ImageUpload">Choose file</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Name" class="control-label font-weight-bold"></label>
+                    <input asp-for="Name" class="form-control shadow-input" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Type" class="control-label font-weight-bold">Category</label>
+                    <input asp-for="Type" class="form-control shadow-input" />
+                    <span asp-validation-for="Type" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="description" class="control-label font-weight-bold"></label>
+                    <input asp-for="description" class="form-control shadow-input" />
+                    <span asp-validation-for="description" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ProductionDate" class="control-label font-weight-bold">Production Date</label>
+                    <input asp-for="ProductionDate" type="date" class="form-control shadow-input" />
+                    <span asp-validation-for="ProductionDate" class="text-danger"></span>
+                </div>
+                <div class="form-group mt-4 mb-3 text-center">
+                    <input type="submit" value="Create" class="btn btn-primary btn-lg shadow-btn mr-2" />
+                    <a asp-action="Display" class="btn btn-secondary btn-lg shadow-btn">Back to List</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var fileInput = document.getElementById("ImageUpload");
+            var fileInputLabel = document.querySelector("label[for='ImageUpload']");
+
+            fileInput.addEventListener("change", function () {
+                var fileName = fileInput.files[0].name;
+                fileInputLabel.textContent = fileName;
+
+                // Add a class for fancy styling
+                fileInputLabel.classList.add("selected");
+            });
+        });
+    </script>
+}
+
+@section Styles {
+    <style>
+        .container {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #212529;
+        }
+
+        .header {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+            .header h1 {
+                color: #343a40;
+            }
+
+        .form-3d {
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            transition: transform 0.3s;
+        }
+
+            .form-3d:hover {
+                transform: translateY(-5px);
+            }
+
+            .form-3d .form-control {
+                border-radius: 5px;
+                border: 1px solid #ced4da;
+                box-shadow: none;
+            }
+
+                .form-3d .form-control:focus {
+                    border-color: #80bdff;
+                    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+                }
+
+        .shadow-input {
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.2);
+            transition: box-shadow 0.3s;
+        }
+
+            .shadow-input:focus {
+                box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.15), 0 4px 8px rgba(0, 0, 0, 0.2);
+            }
+
+        .custom-file {
+            position: relative;
+            display: block;
+            width: 100%;
+            height: calc(1.5em + .75rem + 2px);
+            margin-bottom: 1rem;
+        }
+
+        .custom-file-input {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            height: calc(1.5em + .75rem + 2px);
+            margin: 0;
+            opacity: 0;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.2);
+            transition: box-shadow 0.3s;
+        }
+
+            .custom-file-input:focus {
+                box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.15), 0 4px 8px rgba(0, 0, 0, 0.2);
+            }
+
+        .custom-file-label {
+            position: absolute;
+            top: 0;
+            right: 0;
+            left: 0;
+            z-index: 1;
+            height: calc(1.5em + .75rem + 2px);
+            padding: .375rem .75rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #495057;
+            background-color: #fff;
+            border: 1px solid #ced4da;
+            border-radius: .25rem;
+            transition: box-shadow 0.3s, background-color 0.3s, color 0.3s;
+        }
+
+            .custom-file-label.selected {
+                background-color: #d4edda;
+                color: #155724;
+                border-color: #c3e6cb;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            }
+
+        .btn-lg {
+            padding: 10px 20px;
+            font-size: 1.25rem;
+            border-radius: 0.3rem;
+        }
+
+        .shadow-btn {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s;
+        }
+
+            .shadow-btn:hover {
+                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            }
+
+        .text-danger {
+            color: #dc3545 !important;
+        }
+
+        .mb-3 {
+            margin-bottom: 1rem !important;
+        }
+
+        .mt-4 {
+            margin-top: 1.5rem !important;
+        }
+
+        .mr-2 {
+            margin-right: 0.5rem !important;
+        }
+
+        .text-center {
+            text-align: center !important;
+        }
+    </style>
+}
